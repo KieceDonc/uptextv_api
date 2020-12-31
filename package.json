@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/api.js",
+  "scripts": {
+    "api": "node ./src/api.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "forever": "^3.0.4",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.8",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0"
+  }
+}
