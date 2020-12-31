@@ -37,6 +37,7 @@ io.on('connection', (socket) => {
         setup(cryptedUserID).then(()=>{
             socket.emit('callback_setup','done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_setup',err)
         })
     })
@@ -45,6 +46,7 @@ io.on('connection', (socket) => {
         group_exist(cryptedGroupID,cryptedUserID).then((isGroupExist)=>{
             socket.emit('callback_group_exist','done',isGroupExist)
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_group_exist',err)
         })
     })
@@ -53,6 +55,7 @@ io.on('connection', (socket) => {
         add_group(cryptedGroupID,cryptedUserID).then(()=>{
             socket.emit('callback_add_group','done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_add_group',err)
         })
     })
@@ -61,6 +64,7 @@ io.on('connection', (socket) => {
         delete_group(cryptedGroupID,cryptedUserID).then(()=>{
             socket.emit('callback_delete_group','done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_delete_group',err)
         })     
     })
@@ -69,6 +73,7 @@ io.on('connection', (socket) => {
         add_streamer_in_group(cryptedGroupID,cryptedUserID,cryptedStreamerID).then(()=>{
             socket.emit('callback_add_streamer_in_group','done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_add_streamer_in_group',err)
         })
     })
@@ -77,6 +82,7 @@ io.on('connection', (socket) => {
         delete_streamer_in_group(cryptedGroupID,cryptedUserID,cryptedStreamerID).then(()=>{
             socket.emit('callback_delete_streamer_in_group','done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_delete_streamer_in_group',err)
         })
     })
@@ -85,6 +91,7 @@ io.on('connection', (socket) => {
         get_streamer_info(cryptedStreamerID).then((streamerInfo)=>{
             socket.emit('callback_get_streamer_info','done',streamerInfo)
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_get_streamer_info',err)
         })
     })
@@ -93,6 +100,7 @@ io.on('connection', (socket) => {
         get_groups(cryptedUserID).then((groups)=>{
             socket.emit('callback_get_groups','done',groups)
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_get_groups',err)
         })
     })
@@ -104,6 +112,7 @@ io.on('connection', (socket) => {
         set_group_property(cryptedGroupID,cryptedUserID,propertyName,propertyValue).then(()=>{
             socket.emit('callback_set_group_property',propertyName,'done')
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_set_group_property',propertyName,err)
         })
     })
@@ -115,6 +124,7 @@ io.on('connection', (socket) => {
         get_group_property(cryptedGroupID,cryptedUserID,propertyName).then((propertyValue)=>{
             socket.emit('callback_get_group_property',propertyName,'done',propertyValue)
         }).catch((err)=>{
+            console.log(err)
             socket.emit('callback_get_group_property',propertyName,err)
         })
     })
