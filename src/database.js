@@ -6,7 +6,7 @@ const mongodb_password = secret.getMongoDB_password()
 const mongodb_db_name = secret.getMongoDB_db_name()
 const mongodb_users_collection = secret.getMongoDB_users_collection()
 const mongodb_uri = "mongodb+srv://"+mongodb_username+":"+mongodb_password+"@main.i8bys.mongodb.net/"+mongodb_db_name+"?retryWrites=true&w=majority";
-const mongodb_client = new MongoClient(mongodb_uri, { useNewUrlParser: true });
+const mongodb_client = new MongoClient(mongodb_uri, { useNewUrlParser: true, useUnifiedTopology: true});
 
 const defaultLiveColor = '#007aa3'
 
