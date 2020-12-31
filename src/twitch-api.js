@@ -1,11 +1,11 @@
 const request = require('request');
 const secret = require("./secret")
 
-const token_url = 'https://id.twitch.tv/oauth2/token?client_id='+app_twitch_client_id+'&client_secret='+app_twitch_secret+'&grant_type=client_credentials'
-const API_ENDPOINT = 'https://api.twitch.tv/helix/'
-
 const app_twitch_client_id = secret.getTwitch_client_ID()
 const app_twitch_secret = secret.getTwitch_secret()
+
+const token_url = 'https://id.twitch.tv/oauth2/token?client_id='+app_twitch_client_id+'&client_secret='+app_twitch_secret+'&grant_type=client_credentials'
+const API_ENDPOINT = 'https://api.twitch.tv/helix/'
 
 var current_token=-1
 var current_token_expire_date=-1 // in milliseconds since midnight, January 1, 1970. It must be initialize
