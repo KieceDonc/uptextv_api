@@ -14,7 +14,7 @@ var db = null
 
 function getDB(){
     return new Promise((resolve,reject)=>{
-        if(!db){
+        if(db==null){
             mongodb_client.connect(err => {
                 if(err){
                     reject(err)
