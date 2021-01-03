@@ -200,7 +200,7 @@ module.exports= {
             getDB().then((db)=>{
                 let newUser = {}
                 newUser['ID']=userID
-                newUser['112_105_110_110_101_100_32_115_116_114_101_97_109_101_114_115']={
+                newUser['112_105_110']={
                     name:'pin',
                     list:[],
                     liveColor:defaultLiveColor,
