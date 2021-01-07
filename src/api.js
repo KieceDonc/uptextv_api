@@ -128,6 +128,15 @@ io.on('connection', (socket) => {
             socket.emit('callback_get_group_property',propertyName,err)
         })
     })
+
+    socket.on('get_userID_by_name',(userName)=>{
+        get_userID_by_name(userName).then((userID)=>{
+            socket.emit('callback_get_userID_by_name','done',userID)
+        }).catch((err)=>{
+            console.log(err)
+            socket.emit('callback_get_userID_by_name',err)
+        })
+    })
 });
 
 /**
@@ -293,40 +302,35 @@ function get_groups(cryptedUserID){
 
 function set_group_property(cryptedGroupID,cryptedUserID,propertyName,propertyValue){
     return new Promise((resolve,reject)=>{
-        try{
-            let userID = decryptID(cryptedUserID)
-            database.setGroupProperty(cryptedGroupID,userID,propertyName,propertyValue).then(()=>{
-                resolve()
-            }).catch((err)=>{
-                reject(err)
-            })  
-        }catch(err){
+        let userID = decryptID(cryptedUserID)
+        database.setGroupProperty(cryptedGroupID,userID,propertyName,propertyValue).then(()=>{
+            resolve()
+        }).catch((err)=>{
             reject(err)
-        }
+        })  
     })
 }
 
 function get_group_property(cryptedGroupID,cryptedUserID,propertyName){
     return new Promise((resolve,reject)=>{
-        try{
-            let userID = decryptID(cryptedUserID)
-            database.getGroupProperty(cryptedGroupID,userID,propertyName).then((propertyValue)=>{
-                resolve(propertyValue)
-            }).catch((err)=>{
-                reject(err)
-            })
-        }catch(err){
+        let userID = decryptID(cryptedUserID)
+        database.getGroupProperty(cryptedGroupID,userID,propertyName).then((propertyValue)=>{
+            resolve(propertyValue)
+        }).catch((err)=>{
             reject(err)
-        }
+        })
     })
 }
 
-
-
-
-
-
-
+function get_userID_by_name(userName){
+    return new Promise((resolve,reject)=>{
+        twitchAPI.getUserIDByName(userName).then((userID)=>{
+            resolve(userID)
+        }).catch((err)=>{
+            reject(err)
+        })
+    })
+}
 
 function decryptIDS(){
     return new Promise((resolve,reject)=>{

@@ -275,6 +275,31 @@ module.exports = {
         })
     },
 
+    getUserIDByName(userName){
+        return new Promise((resolve,reject)=>{
+            getTwitchAccessToken().then((bearer_token)=>{
+                let urlToCall = API_ENDPOINT+'users?login='+userName
+                request.get({ 
+                    headers: {
+                        'content-type' : 'application/json',
+                        'Authorization': 'Bearer '+bearer_token,
+                        'Client-ID' : app_twitch_client_id
+                    }, 
+                    url: urlToCall 
+                }, 
+                    function(error, response, body){
+                        body = JSON.parse(body)
+                        if(error){
+                            reject(error)
+                        }else{
+                            resolve(body.data[0].id) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                        }
+                });
+            }).catch((err)=>{
+                reject(err)
+            })
+        })
+    },
 }
 
 /**
