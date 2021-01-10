@@ -34,7 +34,7 @@ var io = require('socket.io').listen(server);
 io.on('connection', (socket) => {
     onGroupsUpdate = (userID)=>{
         get_groups(userID).then((groups)=>{
-            socket.broadcast.to(userID).emit('broadcast_groups_update',groups)
+            io.in(userID).emit('broadcast_groups_update',groups,socket.id)
         }).catch((err)=>{
             console.log(err)
         })
