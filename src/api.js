@@ -29,6 +29,9 @@ var server = https.createServer(credentials, app)
     .listen(port, function () {
 })  
 
+var io = require('socket.io').listen(server);
+
+
 var onGroupsUpdate = (userID,senderSocketID)=>{
     get_groups(userID).then((groups)=>{
         io.in(userID).emit('broadcast_groups_update',groups,senderSocketID)
@@ -36,8 +39,6 @@ var onGroupsUpdate = (userID,senderSocketID)=>{
         console.log(err)
     })
 }
-
-var io = require('socket.io').listen(server);
 
 io.on('connection', (socket) => {
 

@@ -87,7 +87,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            if(body.data.length>=1){
+                            if(body.data!=null){
                                 resolve(body.data[0])
                             }else{
                                 resolve(null)
@@ -129,7 +129,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            if(body.data.length>=1){
+                            if(body.data!=null){
                                 resolve(body.data[0])
                             }else{
                                 resolve(null)
@@ -175,7 +175,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            if(body.data.length>=1){
+                            if(body.data!=null){
                                 resolve(body.data[0])
                             }else{
                                 resolve(null)
