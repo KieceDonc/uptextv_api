@@ -1,8 +1,6 @@
 const express = require('express'); 
 const fs = require('fs')
 const https = require('https');
-const { isBuffer } = require('util');
-const { getGroups } = require('./database');
 const database = require('./database')
 const twitchAPI = require('./twitch-api');
 
