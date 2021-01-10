@@ -89,13 +89,12 @@ module.exports = {
                         }else{
                             try{
                                 if(body.data.length>=1){
-                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                                }else{
-                                    reject("no user data")
+                                    resolve(body.data[0])// data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                                 }
                             }catch(err){
                                 reject(err)
                             }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
@@ -133,15 +132,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            try{
-                                if(body.data.length>=1){
-                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                                }else{
-                                    reject("no user data")
-                                }
-                            }catch(err){
-                                reject(err)
-                            }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
@@ -183,15 +174,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            try{
-                                if(body.data.length>=1){
-                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                                }else{
-                                    reject("no user data")
-                                }
-                            }catch(err){
-                                reject(err)
-                            }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
