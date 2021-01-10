@@ -29,16 +29,17 @@ var server = https.createServer(credentials, app)
     .listen(port, function () {
 })  
 
+var onGroupsUpdate = (userID,senderSocketID)=>{
+    get_groups(userID).then((groups)=>{
+        io.in(userID).emit('broadcast_groups_update',groups,senderSocketID)
+    }).catch((err)=>{
+        console.log(err)
+    })
+}
+
 var io = require('socket.io').listen(server);
 
 io.on('connection', (socket) => {
-    onGroupsUpdate = (userID)=>{
-        get_groups(userID).then((groups)=>{
-            io.in(userID).emit('broadcast_groups_update',groups,socket.id)
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
 
     socket.on('setup',(cryptedUserID)=>{
         
@@ -65,33 +66,33 @@ io.on('connection', (socket) => {
         })
     })
 
-    socket.on('add_group',(cryptedGroupID,cryptedUserID)=>{
+    socket.on('add_group',(cryptedGroupID,cryptedUserID,senderSocketID)=>{
 
         let userID = decryptID(cryptedUserID)
 
         add_group(cryptedGroupID,userID).then(()=>{
             socket.emit('callback_add_group','done')
-            onGroupsUpdate(userID)
+            onGroupsUpdate(userID,senderSocketID)
         }).catch((err)=>{
             console.log(err)
             socket.emit('callback_add_group',err)
         })
     })
 
-    socket.on('delete_group',(cryptedGroupID,cryptedUserID)=>{
+    socket.on('delete_group',(cryptedGroupID,cryptedUserID,senderSocketID)=>{
 
         let userID = decryptID(cryptedUserID)
 
         delete_group(cryptedGroupID,userID).then(()=>{
             socket.emit('callback_delete_group','done')
-            onGroupsUpdate(userID)
+            onGroupsUpdate(userID,senderSocketID)
         }).catch((err)=>{
             console.log(err)
             socket.emit('callback_delete_group',err)
         })     
     })
 
-    socket.on('add_streamer_in_group',(cryptedGroupID,cryptedUserID,cryptedStreamerID)=>{
+    socket.on('add_streamer_in_group',(cryptedGroupID,cryptedUserID,cryptedStreamerID,senderSocketID)=>{
 
 
         let userID = decryptID(cryptedUserID)
@@ -99,21 +100,21 @@ io.on('connection', (socket) => {
 
         add_streamer_in_group(cryptedGroupID,userID,streamerID).then(()=>{
             socket.emit('callback_add_streamer_in_group','done')
-            onGroupsUpdate(userID)
+            onGroupsUpdate(userID,senderSocketID)
         }).catch((err)=>{
             console.log(err)
             socket.emit('callback_add_streamer_in_group',err)
         })
     })
 
-    socket.on('delete_streamer_in_group',(cryptedGroupID,cryptedUserID,cryptedStreamerID)=>{
+    socket.on('delete_streamer_in_group',(cryptedGroupID,cryptedUserID,cryptedStreamerID,senderSocketID)=>{
 
         let userID = decryptID(cryptedUserID)
         let streamerID = decryptID(cryptedStreamerID)
 
         delete_streamer_in_group(cryptedGroupID,userID,streamerID).then(()=>{
             socket.emit('callback_delete_streamer_in_group','done')
-            onGroupsUpdate(userID)
+            onGroupsUpdate(userID,senderSocketID)
         }).catch((err)=>{
             console.log(err)
             socket.emit('callback_delete_streamer_in_group',err)
@@ -147,13 +148,13 @@ io.on('connection', (socket) => {
     /**
      * use to set liveColor, sortIndex, groupPosition, groupIsHidden
      */
-    socket.on('set_group_property',(cryptedGroupID,cryptedUserID,propertyName,propertyValue)=>{
+    socket.on('set_group_property',(cryptedGroupID,cryptedUserID,propertyName,propertyValue,senderSocketID)=>{
 
         let userID = decryptID(cryptedUserID)
 
         set_group_property(cryptedGroupID,userID,propertyName,propertyValue).then(()=>{
             socket.emit('callback_set_group_property',propertyName,'done')
-            onGroupsUpdate(userID)
+            onGroupsUpdate(userID,senderSocketID)
         }).catch((err)=>{
             console.log(err)
             socket.emit('callback_set_group_property',propertyName,err)

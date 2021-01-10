@@ -87,14 +87,11 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            try{
-                                if(body.data.length>=1){
-                                    resolve(body.data[0])// data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                                }
-                            }catch(err){
-                                reject(err)
+                            if(body.data.length>=1){
+                                resolve(body.data[0])
+                            }else{
+                                resolve(null)
                             }
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
@@ -132,7 +129,11 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            if(body.data.length>=1){
+                                resolve(body.data[0])
+                            }else{
+                                resolve(null)
+                            }
                         }
                 });
             }).catch((err)=>{
@@ -174,7 +175,11 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            if(body.data.length>=1){
+                                resolve(body.data[0])
+                            }else{
+                                resolve(null)
+                            }
                         }
                 });
             }).catch((err)=>{
@@ -299,7 +304,11 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0].id) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            if(body.data.length>=1){
+                                resolve(body.data[0].id)
+                            }else{
+                                resolve(null)
+                            }
                         }
                 });
             }).catch((err)=>{
