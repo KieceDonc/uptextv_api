@@ -87,7 +87,15 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            try{
+                                if(body.data.length>=1){
+                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                                }else{
+                                    reject("no user data")
+                                }
+                            }catch(err){
+                                reject(err)
+                            }
                         }
                 });
             }).catch((err)=>{
@@ -125,7 +133,15 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            try{
+                                if(body.data.length>=1){
+                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                                }else{
+                                    reject("no user data")
+                                }
+                            }catch(err){
+                                reject(err)
+                            }
                         }
                 });
             }).catch((err)=>{
@@ -167,7 +183,15 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                            try{
+                                if(body.data.length>=1){
+                                    resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
+                                }else{
+                                    reject("no user data")
+                                }
+                            }catch(err){
+                                reject(err)
+                            }
                         }
                 });
             }).catch((err)=>{
