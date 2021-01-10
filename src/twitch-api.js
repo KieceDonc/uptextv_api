@@ -87,12 +87,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            let result = body.data
-                            if(result.length>=1){
-                                resolve(result[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                            }else{
-                                reject('twitch api as return nothing')
-                            }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
@@ -130,12 +125,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            let result = body.data
-                            if(result.length>=1){
-                                resolve(result[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                            }else{
-                                reject('twitch api as return nothing')
-                            }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
@@ -177,12 +167,7 @@ module.exports = {
                         if(error){
                             reject(error)
                         }else{
-                            let result = body.data
-                            if(result.length>=1){
-                                resolve(result[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
-                            }else{
-                                reject('twitch api as return nothing')
-                            }
+                            resolve(body.data[0]) // data[0] is needed cuz normaly you can ask for several user information but we just want data for our user
                         }
                 });
             }).catch((err)=>{
